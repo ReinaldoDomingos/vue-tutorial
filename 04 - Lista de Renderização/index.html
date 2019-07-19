@@ -13,9 +13,17 @@
 			</div>		
 			<div class="produto-info">			
 				<h1>{{produto}}</h1>
-				K				<p v-if='emEstoque'>Em estoque</p>				
-				<p v-else>Estoque esgotado</p>					
+				<p v-if='emEstoque'>Em estoque</p>				
+				<p v-else>Estoque esgotado</p>				
+				<ul>
+					<li v-for='detalhe in detalhes'>{{detalhe}}</li>
+				</ul>
+
+				<div v-for='variacao in variacoes' :key='variacao.id'>
+					{{variacao.color}}
+				</div>
 			</div>
+
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 		<script type="text/javascript">
@@ -24,7 +32,18 @@
 				data: {
 					produto: 'Meia Azul',
 					imagem: './assets/vmSocks-blue.png',
-					emEstoque: true
+					emEstoque: true,
+					detalhes: ['80% cotton','20% polyester','Unisex'],
+					variacoes: [
+					{
+						id: 2234,
+						color: 'green'
+					},
+					{
+						id: 2235,
+						color: 'blue'
+					}
+					]
 				}
 			})
 		</script>
