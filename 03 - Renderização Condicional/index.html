@@ -12,11 +12,23 @@
 				<img v-bind:src="imagem" >
 			</div>		
 			<div class="produto-info">			
-				<h1>{{produto}}</h1>				
+				<h1>{{produto}}</h1>
+				<p v-if='estoque > 10'>Em estoque</p>
+				<p v-else-if='estoque<=10 && estoque>0'>Ultimos {{estoque}} em estoque</p>
+				<p v-else>Estoque esgotado</p>
 			</div>
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-		<script src="main.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					produto: 'Meia Azul',
+					imagem: './assets/vmSocks-blue.png',
+					estoque: 100
+				}
+			})
+		</script>
 	</div>
 </body>
 </html> 
