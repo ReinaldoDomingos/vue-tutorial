@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>App Produto</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+	<div class="nav-bar"></div>
+	<div id="app">
+		<div class="produto">
+			<div class="produto-imagem">			
+				<img v-bind:src="imagem" >
+			</div>		
+			<div class="produto-info">			
+				<h1>{{produto}}</h1>
+				<p v-if='emEstoque'>Em estoque</p>				
+				<p v-else>Estoque esgotado</p>				
+				<ul>
+					<li v-for='detalhe in detalhes'>{{detalhe}}</li>
+				</ul>
+
+				<div v-for='variacao in variacoes' :key='variacao.id'
+				class="color-box" :style="{backgroundColor:variacao.color}"
+				@mouseover="atualizarProduto(variacao.imagem)">
+			</div>
+			<button v-on:click='addCartao' :disabled='!emEstoque' :class='{disabledButton: !emEstoque}'>Add Cartão de Crédito</button>
+			<div class="cart">
+				<p>Cartões({{cartao}})</p>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				produto: 'Meia',
+				imagem: './assets/vmSocks-green.png',
+				emEstoque: false,					
+				detalhes: ['80% cotton','20% polyester','Unisex'],
+				variacoes: [
+				{
+					id: 2234,
+					color: 'green',
+					imagem: './assets/vmSocks-green.png'			
+				},
+				{
+					id: 2235,
+					color: 'blue',
+					imagem: './assets/vmSocks-blue.png'			
+				}
+				],
+				cartao: 0
+			},
+			methods:{
+				addCartao: function () {
+					this.cartao +=1
+				},
+				atualizarProduto: function(novaimagem){
+					this.imagem = novaimagem
+				}
+			}
+		})
+	</script>
+</div>
+</body>
+</html> 
