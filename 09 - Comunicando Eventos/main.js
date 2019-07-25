@@ -68,7 +68,6 @@ Vue.component('produto',{
 	}
 })
 
-
 var app = new Vue({
 	el: '#app',
 	data:{
