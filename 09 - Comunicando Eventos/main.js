@@ -14,7 +14,7 @@ Vue.component('produto',{
 	<h1>{{titulo}}</h1>
 	<p v-if='emEstoque'>Em estoque</p>				
 	<p v-else>Estoque esgotado</p>				
-	<p>Usuário Premium: {{premium}}</p>
+	<p>Frete: {{envio}}</p>
 	<ul>
 	<li v-for='detalhe in detalhes'>{{detalhe}}</li>
 	</ul>
@@ -56,6 +56,11 @@ Vue.component('produto',{
 		},
 		emEstoque(){
 			return this.variacoes[this.variacaoSelecionada].quantidade
+		},
+		envio(){
+			if(this.premium)
+				return "Grátis"
+			return 2.99
 		}
 	},
 	methods:{
